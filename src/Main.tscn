@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://b2qo3cjc4r43c"]
+
+[ext_resource type="PackedScene" uid="uid://c36h6tqoymjvj" path="res://src/player/Player.tscn" id="1_4gxt3"]
+[ext_resource type="Script" uid="uid://1dv5au3rhthb" path="res://src/player/CameraController.cs" id="1_hk4rc"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4gxt3"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_hk4rc"]
+sky_material = SubResource("ProceduralSkyMaterial_4gxt3")
+
+[sub_resource type="Environment" id="Environment_chrbn"]
+background_mode = 2
+sky = SubResource("Sky_hk4rc")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="World" type="Node3D" unique_id=1281825594]
+
+[node name="Player" parent="." unique_id=996866344 node_paths=PackedStringArray("CameraNode") instance=ExtResource("1_4gxt3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9669755, 0)
+CameraNode = NodePath("../Camera3D")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=459289844 node_paths=PackedStringArray("adornee")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6158102, -0.10825336)
+fov = 70.0
+script = ExtResource("1_hk4rc")
+adornee = NodePath("../Player")
+
+[node name="map" type="Node" parent="." unique_id=594633046]
+
+[node name="floor" type="CSGBox3D" parent="map" unique_id=1772036527]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5962524, -2.9997559, 0)
+use_collision = true
+size = Vector3(15.161255, 6.9995117, 13)
+
+[node name="floor2" type="CSGBox3D" parent="map" unique_id=2036526664]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1281433, -1.303462, -9.461542)
+use_collision = true
+size = Vector3(13, 4.5527344, 13)
+
+[node name="floor3" type="CSGBox3D" parent="map" unique_id=671106645]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.757552, -0.1751051, 1.3251162)
+use_collision = true
+size = Vector3(13, 6.8094482, 13)
+
+[node name="environment" type="Node" parent="." unique_id=1110986179]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="environment" unique_id=215464208]
+environment = SubResource("Environment_chrbn")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="environment" unique_id=470629606]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true

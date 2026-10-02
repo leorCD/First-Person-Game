@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://c36h6tqoymjvj"]
+
+[ext_resource type="Script" uid="uid://c2qcsk7gtsn6i" path="res://src/player/PlayerController.cs" id="1_3py4g"]
+[ext_resource type="Script" uid="uid://djmjyym5g40k2" path="res://src/FramerateTracker.cs" id="2_awdo7"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0rwas"]
+radius = 0.4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3py4g"]
+albedo_color = Color(0.99781865, 0.29703322, 0.29086965, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_xhfnw"]
+material = SubResource("StandardMaterial3D_3py4g")
+radius = 0.4
+
+[sub_resource type="SystemFont" id="SystemFont_vna0p"]
+font_names = PackedStringArray("Sans-Serif")
+subpixel_positioning = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_5ow34"]
+font = SubResource("SystemFont_vna0p")
+
+[node name="Player" type="CharacterBody3D" unique_id=996866344]
+script = ExtResource("1_3py4g")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1397713561]
+shape = SubResource("CapsuleShape3D_0rwas")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1604461430]
+mesh = SubResource("CapsuleMesh_xhfnw")
+
+[node name="FPS" type="CanvasLayer" parent="." unique_id=1359983810]
+
+[node name="Label" type="Label" parent="FPS" unique_id=2132662425]
+anchors_preset = -1
+anchor_top = 0.96500003
+anchor_right = 0.095000006
+anchor_bottom = 1.0
+offset_top = -0.32000732
+offset_right = 0.5599899
+grow_vertical = 0
+text = "? FPS"
+label_settings = SubResource("LabelSettings_5ow34")
+horizontal_alignment = 1
+script = ExtResource("2_awdo7")

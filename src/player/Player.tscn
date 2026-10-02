@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://c2qcsk7gtsn6i" path="res://src/player/PlayerController.cs" id="1_3py4g"]
 [ext_resource type="Script" uid="uid://djmjyym5g40k2" path="res://src/FramerateTracker.cs" id="2_awdo7"]
+[ext_resource type="Script" uid="uid://6re2jwyg0ivv" path="res://src/player/CoyoteTimeTracker.cs" id="3_3ojaj"]
+[ext_resource type="Script" uid="uid://dxyi83x5vu0qo" path="res://src/player/InputBufferTracker.cs" id="4_565yv"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0rwas"]
 radius = 0.4
@@ -31,15 +33,47 @@ mesh = SubResource("CapsuleMesh_xhfnw")
 
 [node name="FPS" type="CanvasLayer" parent="." unique_id=1359983810]
 
-[node name="Label" type="Label" parent="FPS" unique_id=2132662425]
+[node name="FPSLabel" type="Label" parent="FPS" unique_id=2132662425]
 anchors_preset = -1
-anchor_top = 0.96500003
-anchor_right = 0.095000006
+anchor_left = 0.011284722
+anchor_top = 0.96450615
+anchor_right = 0.106770836
 anchor_bottom = 1.0
-offset_top = -0.32000732
-offset_right = 0.5599899
 grow_vertical = 0
-text = "? FPS"
+text = "FPS : ?"
 label_settings = SubResource("LabelSettings_5ow34")
-horizontal_alignment = 1
 script = ExtResource("2_awdo7")
+metadata/_edit_use_anchors_ = true
+
+[node name="CoyoteTime" type="Label" parent="FPS" unique_id=1374267141 node_paths=PackedStringArray("Timer")]
+anchors_preset = -1
+anchor_left = 0.010416667
+anchor_top = 0.8580247
+anchor_right = 0.15277778
+anchor_bottom = 0.8935185
+grow_horizontal = 2
+grow_vertical = 2
+text = "Coyote Time : ?"
+label_settings = SubResource("LabelSettings_5ow34")
+script = ExtResource("3_3ojaj")
+Timer = NodePath("../../CoyoteTimer")
+metadata/_edit_use_anchors_ = true
+
+[node name="InputBuffer" type="Label" parent="FPS" unique_id=1064392146 node_paths=PackedStringArray("Timer")]
+anchors_preset = -1
+anchor_left = 0.011284722
+anchor_top = 0.91049385
+anchor_right = 0.1640625
+anchor_bottom = 0.94598764
+grow_vertical = 0
+text = "Input Buffer : ?"
+label_settings = SubResource("LabelSettings_5ow34")
+script = ExtResource("4_565yv")
+Timer = NodePath("../../InputBuffer")
+metadata/_edit_use_anchors_ = true
+
+[node name="CoyoteTimer" type="Timer" parent="." unique_id=835055118]
+one_shot = true
+
+[node name="InputBuffer" type="Timer" parent="." unique_id=1813032155]
+one_shot = true

@@ -6,6 +6,6 @@ public partial class FramerateTracker : Label
     public override void _Process(double delta)
     {
         double fps = Engine.GetFramesPerSecond();
-        Text = (fps + " FPS");
+        Text = ("FPS : " + fps);
     }
 }

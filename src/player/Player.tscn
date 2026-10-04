@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://c36h6tqoymjvj"]
 
 [ext_resource type="Script" uid="uid://c2qcsk7gtsn6i" path="res://src/player/PlayerController.cs" id="1_3py4g"]
+[ext_resource type="Script" uid="uid://s68am3jbn3c3" path="res://src/player/movement state machine/MovementStateMachine.cs" id="1_565yv"]
 [ext_resource type="Script" uid="uid://djmjyym5g40k2" path="res://src/FramerateTracker.cs" id="2_awdo7"]
+[ext_resource type="Script" uid="uid://wlca2vkautsm" path="res://src/player/movement state machine/states/GroundedState.cs" id="2_v7rlw"]
 [ext_resource type="Script" uid="uid://6re2jwyg0ivv" path="res://src/player/CoyoteTimeTracker.cs" id="3_3ojaj"]
 [ext_resource type="Script" uid="uid://dxyi83x5vu0qo" path="res://src/player/InputBufferTracker.cs" id="4_565yv"]
 
@@ -22,8 +24,16 @@ subpixel_positioning = 0
 [sub_resource type="LabelSettings" id="LabelSettings_5ow34"]
 font = SubResource("SystemFont_vna0p")
 
-[node name="Player" type="CharacterBody3D" unique_id=996866344]
+[node name="Player" type="CharacterBody3D" unique_id=996866344 node_paths=PackedStringArray("_movementMachine")]
 script = ExtResource("1_3py4g")
+_movementMachine = NodePath("MovementStateMachine")
+
+[node name="MovementStateMachine" type="Node" parent="." unique_id=1481597533 node_paths=PackedStringArray("_defaultState")]
+script = ExtResource("1_565yv")
+_defaultState = NodePath("GroundedState")
+
+[node name="GroundedState" type="Node" parent="MovementStateMachine" unique_id=97901167]
+script = ExtResource("2_v7rlw")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1397713561]
 shape = SubResource("CapsuleShape3D_0rwas")
